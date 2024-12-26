@@ -1,0 +1,18 @@
+[project]
+name = "casevo"
+version = "0.3.18"
+description = "Cognitive agents and social evolution simulator"
+authors = [
+    {name = "Zexun Jiang",email = "jiangzx2023@cuc.edu.cn"},
+]
+dependencies = [
+    "mesa==2.4.0",
+    "chromadb>=0.5.0",
+]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = true
