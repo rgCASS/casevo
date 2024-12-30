@@ -7,6 +7,8 @@
 
 The goal of this tutorial is to help you construct a simple basic level model and be able to perform simple analyses on the results.
 
+Our paper is available at [this link](https://arxiv.org/abs/2412.19498). Citations are welcome.
+
 ## 2. Background Information
 
 Casevo is built on [Mesa](https://github.com/projectmesa/mesa), so it is similar in fundamental elements and operational logic. Key related information:
