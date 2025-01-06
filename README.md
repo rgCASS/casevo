@@ -9,6 +9,18 @@ The goal of this tutorial is to help you construct a simple basic level model an
 
 Our paper is available at [this link](https://arxiv.org/abs/2412.19498). Citations are welcome.
 
+```bibtex
+@misc{jiang2024casevocognitiveagentssocial,
+      title={Casevo: A Cognitive Agents and Social Evolution Simulator}, 
+      author={Zexun Jiang and Yafang Shi and Maoxu Li and Hongjiang Xiao and Yunxiao Qin and Qinglan Wei and Ye Wang and Yuan Zhang},
+      year={2024},
+      eprint={2412.19498},
+      archivePrefix={arXiv},
+      primaryClass={cs.SI},
+      url={https://arxiv.org/abs/2412.19498}, 
+}
+```
+
 ## 2. Background Information
 
 Casevo is built on [Mesa](https://github.com/projectmesa/mesa), so it is similar in fundamental elements and operational logic. Key related information:
@@ -586,3 +598,8 @@ The `model_base.py` module defines a model class `ModelBase` based on the Mesa f
 
 The `TotLog` class is used for **recording and managing log data**, supporting the saving of log information to a file and managing time offsets. This class provides functionality for adding logs, setting logs, and writing logs to a file.
 
+## 6 Acknowledgement
+During the development of the Casevo, we are fortunate to have the support of a group of brilliant code contributors. 
+- [Yafang Shi](https://github.com/Freya236)
+- [Maoxu Li](https://github.com/limaoSure)
+- [Hang Su](https://github.com/suhangha)
