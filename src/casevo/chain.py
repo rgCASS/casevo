@@ -5,7 +5,7 @@ import threading
 import queue
 import time
 
-#CoT步骤鸡肋
+#CoT步骤基类
 class BaseStep:
     #对应的Prompt
     prompt = None
