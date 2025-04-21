@@ -222,6 +222,21 @@ class JsonStep(BaseStep):
                 'json': cur_json
             }
 
+class ToolStep(BaseStep):
+    def __init__(self, step_id, tar_prompt, callback=None):
+        super().__init__(step_id, tar_prompt)
+        self.callback = callback
+    
+    def pre_process(self, input, agent=None, model=None):
+        input['arguments'] = None
+        return input
+    
+    def action(self, input, agent=None, model=None):
+        response = self.callback(input['arguments'])
+        return response
+
+
+
 
 #思维链
 class ThoughtChain(BaseAgentComponent):

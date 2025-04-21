@@ -7,13 +7,21 @@ class OrederTypeActivation(mesa.time.RandomActivationByType):
     def add_timestemp(self):
         self.time += 1
         self.steps += 1
+        
+class VariableNetwork(mesa.space.NetworkGrid):
+    def del_edge(self, source, target):
+        self.G.remove_edge(source, target)
+    
+    def add_edge(self, source, target):
+        self.G.add_edge(source, target)
+
 
 #模型定义基类
 class ModelBase(mesa.Model):
     def __init__(self, tar_graph, llm, context=None, prompt_path='./prompt/', memory_path=None, memory_num=10, reflect_file='reflect.txt', type_schedule=False):
         super().__init__()
         #设置网络
-        self.grid = mesa.space.NetworkGrid(tar_graph)
+        self.grid = VariableNetwork(tar_graph)
     
         #Agent调度器
         if type_schedule:
