@@ -56,8 +56,8 @@ If you want to further understand Mesa's operational logic, please read the [doc
 
 Create and activate a Python [virtual environment](https://docs.python-guide.org/dev/virtualenvs/) or a [conda environment](https://docs.conda.org.cn/projects/conda/en/stable/user-guide/index.html). Python version above 3.11 is required.
 
-- Download the tool's whl file `casevo-0.3.18-py3-none-any.whl`.
-- Install the tool using `pip install casevo-0.3.18-py3-none-any.whl`.
+- Download the tool's whl file `casevo-0.3.*-py3-none-any.whl`[link](https://github.com/rgCASS/casevo/releases).
+- Install the tool using `pip install casevo-0.3.*-py3-none-any.whl`.
 
 ## 4. Building a Sample Simulation Experiment
 
