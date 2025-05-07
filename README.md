@@ -1,6 +1,17 @@
 # Casevo: Cognitive agents and social evolution simulator
 ![Casevo Logo](logo_casevo.svg)
 
+## 0. What's New
+
+- **2025-04-22** 0.3.19 released
+  - Add TotLogStream `(src/casevo/util/tot_log_stream.py)`.
+    - Since it uses the simple `open(fila, 'a')` method, the log directory needs to be cleared when running it again.
+    - The output format has been changed from the previous JSON to TXT.
+    - Previously, it was in an array format. Now, each line in the log corresponds to an item in the previous log array, and other formats remain unchanged.
+  - Add VariableNetwork in `model_base.py`
+  - Add ToolStep for the tool calling in `chain.py`
+  - Add CoT feature for memory reflection `in momory.py`.
+
 ## 1. Introduction
 
 **Casevo (Cognitive agents and social evolution simulator)** is a Python framework specifically designed for building social simulation multi-agent experiments or applications based on complex networks. This tutorial aims to help you get started. By completing this tutorial, you will discover the core functionalities of Casevo. Throughout the tutorial, you will gradually create a basic level model, with features increasing as you progress.
@@ -45,8 +56,8 @@ If you want to further understand Mesa's operational logic, please read the [doc
 
 Create and activate a Python [virtual environment](https://docs.python-guide.org/dev/virtualenvs/) or a [conda environment](https://docs.conda.org.cn/projects/conda/en/stable/user-guide/index.html). Python version above 3.11 is required.
 
-- Download the tool's whl file `casevo-0.3.18-py3-none-any.whl`.
-- Install the tool using `pip install casevo-0.3.18-py3-none-any.whl`.
+- Download the tool's whl file `casevo-0.3.*-py3-none-any.whl`[link](https://github.com/rgCASS/casevo/releases).
+- Install the tool using `pip install casevo-0.3.*-py3-none-any.whl`.
 
 ## 4. Building a Sample Simulation Experiment
 

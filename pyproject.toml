@@ -1,6 +1,6 @@
 [project]
 name = "casevo"
-version = "0.3.18"
+version = "0.3.19"
 description = "Cognitive agents and social evolution simulator"
 authors = [
     {name = "Zexun Jiang",email = "jiangzx2023@cuc.edu.cn"},

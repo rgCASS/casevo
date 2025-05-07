@@ -124,6 +124,12 @@ class Memory(BaseAgentComponent):
         response, last_id = self.short_memory_factory.__reflect_memory__(self.agent,self.last_id,self.long_memory)
         self.last_id = last_id
         self.long_memory = response
+    
+    def reflect_memory_by_chain(self, chain):
+        response, last_id = self.short_memory_factory.__reflect_memory_by_chain__(self.agent,self.last_id,self.long_memory, chain)
+        self.last_id = last_id
+        self.long_memory = response
+    
     def get_long_memory(self):
         #获得长期记忆
         return self.long_memory
@@ -268,5 +274,54 @@ class MemeoryFactory(BaseModelComponent):
         # 返回反射操作的结果和最新的记忆项ID
         return response, last_id
 
+    def __reflect_memory_by_chain__(self, tar_agent, tar_pos, tar_long_opinion, tar_chain):
+        """
+        根据目标代理和位置进行reflection。
+
+        该方法从内存集合中检索出指定代理之后的所有记忆项，并结合传入的长期意见，
+        创建一个包含长期和短期记忆的字典。然后，它发送一个包含这些记忆的提示到反射prompt，
+        以更新模型。最后，返回反射操作的结果以及最新的记忆项ID。
+
+        参数:
+        - tar_agent: 目标代理，记忆将基于此代理进行反射。
+        - tar_pos: 目标位置，记忆点应在此位置之后。
+        - tar_long_opinion: 目标长期意见，将被包含在反射的记忆中。
+
+        返回:
+        - response: 反射操作的结果。
+        - last_id: 最新的记忆项ID。
+        """
+        self.lock.acquire()
+        # 从内存集合中查询位于tar_pos之后且与tar_agent相关的记忆项
+        memory_list = self.memory_collection.get(
+            where={
+                "$and":[
+                    {"id":{"$gt":tar_pos}},
+                    {"$or":[{"source": tar_agent.component_id},{"target": tar_agent.component_id}]}
+                ]
+            })
+        self.lock.release()
+
+        # 构建包含长期和短期记忆的字典
+        tar_item = {
+            'long_memory': tar_long_opinion,
+            'short_memory': memory_list['metadatas']
+        }
+        tar_chain.set_input(tar_item)
         
+        tar_chain.run_step()
+        
+        response = tar_chain.get_output()['last_response']
+         
+        # 初始化最后一个记忆项ID为-1，用于后续寻找最新的记忆项ID
+        last_id = -1
+        
+        # 遍历记忆项ID列表，更新last_id为最大的ID值
+        for item in memory_list['ids']:
+            if int(item) > last_id:
+                last_id = int(item)
+        
+        # 返回反射操作的结果和最新的记忆项ID
+        return response, last_id
+
 
